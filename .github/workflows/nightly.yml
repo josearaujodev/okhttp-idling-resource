@@ -6,12 +6,13 @@ on:
 
 jobs:
   build:
-    name: 'JDK=${{ matrix.java }} | AGP=${{ matrix.agp }} | KT=${{ matrix.kotlin }} | GRADLE=${{ matrix.gradle }}'
+    name: 'JDK=${{ matrix.java }} | AGP=${{ matrix.agp }} | KT=${{ matrix.kotlin }} | GRADLE=${{ matrix.gradle }} | OKHTTP=${{ matrix.okhttp }}'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         java: [11, 19]
+        kotlin: [1.8.10, 1.8.20-RC2]
         agp: [7.4.2, 8.1.0-alpha10]
         gradle: [7.6.1, 8.1-rc-1]
         okhttp: [3.14.9, 4.10.0, 5.0.0-alpha.11]
@@ -30,4 +31,4 @@ jobs:
         with:
           gradle-version: ${{ matrix.gradle }}
 
-      - run: gradle test --stacktrace -PagpVersion=${{ matrix.agp }} -PokHttpVersion=${{ matrix.okhttp }}
+      - run: gradle test --stacktrace -PagpVersion=${{ matrix.agp }} -PkotlinVersion=${{ matrix.kotlin }} -PokHttpVersion=${{ matrix.okhttp }}

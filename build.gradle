@@ -1,14 +1,17 @@
 buildscript {
   rootProject.ext.agpVersion = findProperty("agpVersion")?.toString() ?: "7.4.2"
+  rootProject.ext.kotlinVersion = findProperty("kotlinVersion")?.toString() ?: "1.8.10"
   rootProject.ext.okHttpVersion = findProperty("okHttpVersion")?.toString() ?: "4.10.0"
 
   dependencies {
     classpath "com.android.tools.build:gradle:${agpVersion}"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
   }
 }
 
 plugins {
   id 'com.android.library' version "${agpVersion}"
+  id 'org.jetbrains.kotlin.android' version "${kotlinVersion}"
 }
 
 dependencies {
