@@ -16,9 +16,9 @@
  */
 package dev.josearaujo.espresso
 
-import android.support.annotation.CheckResult
-import android.support.test.espresso.IdlingResource
-import android.support.test.espresso.IdlingResource.ResourceCallback
+import androidx.annotation.CheckResult
+import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.IdlingResource.ResourceCallback
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 
@@ -29,11 +29,10 @@ class OkHttp3IdlingResource private constructor(
 ) : IdlingResource {
 
     @Volatile
-    var callback: ResourceCallback? = null
+    private var callback: ResourceCallback? = null
 
     init {
         dispatcher.idleCallback = Runnable {
-            val callback = callback
             callback?.onTransitionToIdle()
         }
     }

@@ -16,9 +16,9 @@
  */
 package dev.josearaujo.espresso
 
-import android.support.test.espresso.IdlingResource
-import android.support.test.espresso.IdlingResource.ResourceCallback
-import com.google.common.truth.Truth
+import androidx.test.espresso.IdlingResource
+import androidx.test.espresso.IdlingResource.ResourceCallback
+import com.google.common.truth.Truth.assertThat
 import okhttp3.*
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -29,19 +29,19 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
-internal class OkHttp3IdlingResourceTest {
+class OkHttp3IdlingResourceTest {
     @get:Rule val server = MockWebServer()
 
     @Test
-    internal fun name() {
+    fun name() {
         val client = OkHttpClient()
         val idlingResource: IdlingResource = OkHttp3IdlingResource.create("Ok!", client)
-        Truth.assertThat(idlingResource.name).isEqualTo("Ok!")
+        assertThat(idlingResource.name).isEqualTo("Ok!")
     }
 
     @Test
     @Throws(InterruptedException::class)
-    internal fun idleNow() {
+    fun idleNow() {
         server.enqueue(MockResponse())
         val requestReady = CountDownLatch(1)
         val requestProceed = CountDownLatch(1)
@@ -57,7 +57,7 @@ internal class OkHttp3IdlingResourceTest {
             })
             .build()
         val idlingResource: IdlingResource = OkHttp3IdlingResource.create("Ok!", client)
-        Truth.assertThat(idlingResource.isIdleNow).isTrue()
+        assertThat(idlingResource.isIdleNow).isTrue()
         val call = client.newCall(Request.Builder().url(server.url("/")).build())
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
@@ -72,28 +72,28 @@ internal class OkHttp3IdlingResourceTest {
 
         // Wait until the interceptor is called signifying we are not idle.
         requestReady.await(10, TimeUnit.SECONDS)
-        Truth.assertThat(idlingResource.isIdleNow).isFalse()
+        assertThat(idlingResource.isIdleNow).isFalse()
 
         // Allow the request to proceed and wait for the executor to stop to signify we became idle.
         requestProceed.countDown()
         client.dispatcher.executorService.shutdown()
         client.dispatcher.executorService.awaitTermination(10, TimeUnit.SECONDS)
-        Truth.assertThat(idlingResource.isIdleNow).isTrue()
+        assertThat(idlingResource.isIdleNow).isTrue()
     }
 
     @Test
     @Throws(InterruptedException::class, IOException::class)
-    internal fun idleCallback() {
+    fun idleCallback() {
         server.enqueue(MockResponse())
         val client = OkHttpClient()
         val idlingResource: IdlingResource = OkHttp3IdlingResource.create("Ok!", client)
         val count = AtomicInteger()
         val callback = ResourceCallback { count.getAndIncrement() }
         idlingResource.registerIdleTransitionCallback(callback)
-        Truth.assertThat(count.get()).isEqualTo(0)
+        assertThat(count.get()).isEqualTo(0)
 
         // Use a synchronous call as a quick way to transition from busy to idle in a blocking way.
         client.newCall(Request.Builder().url(server.url("/")).build()).execute().close()
-        Truth.assertThat(count.get()).isEqualTo(1)
+        assertThat(count.get()).isEqualTo(1)
     }
 }
