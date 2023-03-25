@@ -12,6 +12,7 @@ With your `OkHttpClient` instance, create an idling resource:
 
 <details>
   <summary>Java</summary>
+
 ```java
 OkHttpClient client = // ...
 IdlingResource resource = OkHttp3IdlingResource.create("OkHttp", client);
@@ -20,17 +21,18 @@ IdlingResource resource = OkHttp3IdlingResource.create("OkHttp", client);
 
 <details>
   <summary>Kotlin</summary>
-```java
+
+```kotlin
 val client: OkHttpClient = // ...
-val resource: IdlingResource = OkHttp3IdlingResource.create("OkHttp", client);
+val resource: IdlingResource = OkHttp3IdlingResource.create("OkHttp", client)
 ```
 </details>
 
 Register the idling resource with `Espresso` before any of your tests.
+
 ```java
 Espresso.registerIdlingResources(resource);
 ```
-
 
 
 Download
@@ -38,6 +40,7 @@ Download
 
 <details>
   <summary>Stable release</summary>
+
 ```groovy
 androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0'
 ```
@@ -45,6 +48,7 @@ androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0
 
 <details>
   <summary>Snapshot</summary>
+
 ```groovy
 androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0-SNAPSHOT'
 ```
