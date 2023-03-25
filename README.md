@@ -9,10 +9,22 @@ Usage
 -----
 
 With your `OkHttpClient` instance, create an idling resource:
+
+<details>
+  <summary>Java</summary>
 ```java
 OkHttpClient client = // ...
 IdlingResource resource = OkHttp3IdlingResource.create("OkHttp", client);
 ```
+</details>
+
+<details>
+  <summary>Kotlin</summary>
+```java
+val client: OkHttpClient = // ...
+val resource: IdlingResource = OkHttp3IdlingResource.create("OkHttp", client);
+```
+</details>
 
 Register the idling resource with `Espresso` before any of your tests.
 ```java
@@ -24,13 +36,19 @@ Espresso.registerIdlingResources(resource);
 Download
 --------
 
+<details>
+  <summary>Stable release</summary>
 ```groovy
 androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0'
 ```
+</details>
 
-Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
-
-
+<details>
+  <summary>Snapshot</summary>
+```groovy
+androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0-SNAPSHOT'
+```
+</details>
 
 License
 -------
