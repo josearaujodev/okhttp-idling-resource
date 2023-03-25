@@ -21,7 +21,7 @@ dependencies {
   implementation 'com.android.support:support-annotations:27.0.1'
 
   testImplementation 'junit:junit:4.12'
-  testImplementation 'com.google.truth:truth:0.34'
+  testImplementation 'com.google.truth:truth:0.46'
   testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.0'
 }
 
