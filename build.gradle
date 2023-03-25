@@ -1,10 +1,10 @@
 buildscript {
   repositories {
     google()
-    jcenter()
+    mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:3.0.0'
+    classpath 'com.android.tools.build:gradle:7.4.2'
   }
 }
 
@@ -26,8 +26,8 @@ dependencies {
 }
 
 android {
-  compileSdkVersion 26
-  buildToolsVersion '26.0.2'
+  compileSdkVersion 33
+  buildToolsVersion '33.0.2'
 
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_7
@@ -41,4 +41,5 @@ android {
   }
 }
 
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+// use chrisbanes mvn push script, but lock it to a specific commit, to avoid automatic "updates"
+apply from: 'https://raw.githubusercontent.com/chrisbanes/gradle-mvn-push/b9d34d928d772c0acc2e0981fc94c6e98b9038db/gradle-mvn-push.gradle'
