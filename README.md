@@ -25,7 +25,7 @@ Download
 --------
 
 ```groovy
-androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
+androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:1.0.0'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
@@ -36,6 +36,7 @@ License
 -------
 
     Copyright 2016 Jake Wharton
+    Copyright 2023 José Araújo
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
