@@ -54,6 +54,19 @@ androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0
 ```
 </details>
 
+If you don't want to use the OkHttp version shipped with the library, you can exclude it.
+This library is tested against OkHttp's latest 3.x, 4.x and 5.x versions, but 100% compatibility is not guaranteed.
+
+<details>
+  <summary>Exclude OkHttp</summary>
+
+```groovy
+androidTestImplementation('dev.josearaujo.espresso:okhttp3-idling-resource:X.Y.Z') {
+ exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+}
+```
+</details>
+
 License
 -------
 
