@@ -15,7 +15,7 @@ plugins {
 }
 
 dependencies {
-  compileOnly "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+  api "com.squareup.okhttp3:okhttp:${okHttpVersion}"
   api 'androidx.test.espresso:espresso-idling-resource:3.5.1'
   implementation 'androidx.annotation:annotation:1.6.0'
 
