@@ -25,21 +25,23 @@ import okhttp3.OkHttpClient
 /** An [IdlingResource] for [OkHttpClient] */
 class OkHttp3IdlingResource private constructor(
     private val name: String,
-    private val dispatcher: Dispatcher
+    private val okHttpCompat: OkHttp3Compat
 ) : IdlingResource {
 
     @Volatile
     private var callback: ResourceCallback? = null
 
     init {
-        dispatcher.idleCallback = Runnable {
+        okHttpCompat.dispatcherCompat.setIdleCallbackCompat {
             callback?.onTransitionToIdle()
         }
     }
 
     override fun getName(): String = name
 
-    override fun isIdleNow(): Boolean = dispatcher.runningCallsCount() == 0
+    override fun isIdleNow(): Boolean {
+        return okHttpCompat.dispatcherCompat.dispatcherDelegate.runningCallsCount() == 0
+    }
 
     override fun registerIdleTransitionCallback(callback: ResourceCallback) {
         this.callback = callback
@@ -52,7 +54,7 @@ class OkHttp3IdlingResource private constructor(
          */
         @CheckResult
         fun create(name: String, client: OkHttpClient): OkHttp3IdlingResource {
-            return OkHttp3IdlingResource(name, client.dispatcher)
+            return OkHttp3IdlingResource(name, client.compat())
         }
     }
 }

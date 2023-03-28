@@ -76,8 +76,10 @@ class OkHttp3IdlingResourceTest {
 
         // Allow the request to proceed and wait for the executor to stop to signify we became idle.
         requestProceed.countDown()
-        client.dispatcher.executorService.shutdown()
-        client.dispatcher.executorService.awaitTermination(10, TimeUnit.SECONDS)
+        with(client.compat().dispatcherCompat.executorService) {
+            shutdown()
+            awaitTermination(10, TimeUnit.SECONDS)
+        }
         assertThat(idlingResource.isIdleNow).isTrue()
     }
 
