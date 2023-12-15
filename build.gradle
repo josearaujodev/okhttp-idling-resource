@@ -17,7 +17,7 @@ plugins {
 dependencies {
   api "com.squareup.okhttp3:okhttp:${okHttpVersion}"
   api 'androidx.test.espresso:espresso-idling-resource:3.5.1'
-  implementation 'androidx.annotation:annotation:1.6.0'
+  implementation 'androidx.annotation:annotation:1.7.1'
 
   testImplementation 'junit:junit:4.13.2'
   testImplementation 'com.google.truth:truth:1.1.3'
