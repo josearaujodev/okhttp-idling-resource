@@ -48,6 +48,3 @@ android {
     ignore 'InvalidPackage'
   }
 }
-
-// use chrisbanes mvn push script, but lock it to a specific commit, to avoid automatic "updates"
-apply from: 'https://raw.githubusercontent.com/chrisbanes/gradle-mvn-push/b9d34d928d772c0acc2e0981fc94c6e98b9038db/gradle-mvn-push.gradle'
