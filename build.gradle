@@ -1,7 +1,7 @@
 buildscript {
-  rootProject.ext.agpVersion = findProperty("agpVersion")?.toString() ?: "7.4.2"
-  rootProject.ext.kotlinVersion = findProperty("kotlinVersion")?.toString() ?: "1.8.10"
-  rootProject.ext.okHttpVersion = findProperty("okHttpVersion")?.toString() ?: "4.10.0"
+  rootProject.ext.agpVersion = findProperty("agpVersion")?.toString() ?: "8.2.2"
+  rootProject.ext.kotlinVersion = findProperty("kotlinVersion")?.toString() ?: "1.9.22"
+  rootProject.ext.okHttpVersion = findProperty("okHttpVersion")?.toString() ?: "4.12.0"
 
   dependencies {
     classpath "com.android.tools.build:gradle:${agpVersion}"
@@ -17,7 +17,7 @@ plugins {
 dependencies {
   api "com.squareup.okhttp3:okhttp:${okHttpVersion}"
   api 'androidx.test.espresso:espresso-idling-resource:3.5.1'
-  implementation 'androidx.annotation:annotation:1.6.0'
+  implementation 'androidx.annotation:annotation:1.7.1'
 
   testImplementation 'junit:junit:4.13.2'
   testImplementation 'com.google.truth:truth:1.1.3'
@@ -26,11 +26,12 @@ dependencies {
 
 android {
 
-  compileSdkVersion 33
+  namespace "dev.josearaujo.espresso.okhttp3"
 
   defaultConfig {
+    compileSdk 34
     minSdkVersion 21
-    targetSdkVersion 33
+    targetSdk 34
   }
 
   compileOptions {
