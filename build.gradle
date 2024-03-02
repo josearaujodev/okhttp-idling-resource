@@ -26,7 +26,7 @@ dependencies {
 
 android {
 
-  namespace "dev.josearaujo.espresso.okhttp3"
+  namespace "dev.josearaujo.espresso"
 
   defaultConfig {
     compileSdk 34
@@ -49,3 +49,5 @@ android {
     ignore 'InvalidPackage'
   }
 }
+
+apply from: './gradle-mvn-push.gradle'

@@ -42,7 +42,7 @@ Download
   <summary>Stable release</summary>
 
 ```groovy
-androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0'
+androidTestImplementation 'dev.josearaujo.espresso:okhttp-idling-resource:2.0.0'
 ```
 </details>
 
@@ -50,7 +50,7 @@ androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0
   <summary>Snapshot</summary>
 
 ```groovy
-androidTestImplementation 'dev.josearaujo.espresso:okhttp3-idling-resource:2.0.0-SNAPSHOT'
+androidTestImplementation 'dev.josearaujo.espresso:okhttp-idling-resource:2.0.0-SNAPSHOT'
 ```
 </details>
 
@@ -61,7 +61,7 @@ This library is tested against OkHttp's latest 3.x, 4.x and 5.x versions, but 10
   <summary>Exclude OkHttp</summary>
 
 ```groovy
-androidTestImplementation('dev.josearaujo.espresso:okhttp3-idling-resource:X.Y.Z') {
+androidTestImplementation('dev.josearaujo.espresso:okhttp-idling-resource:X.Y.Z') {
  exclude group: 'com.squareup.okhttp3', module: 'okhttp'
 }
 ```
